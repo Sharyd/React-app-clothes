@@ -15,6 +15,12 @@
   color: #363636;
 }
 
+.mainContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .image {
   width: 30%;
   border-radius: 10px;
@@ -31,6 +37,29 @@
 .price {
   font-weight: bold;
   color: rgba(9, 97, 121, 1);
+}
+
+.selectedContainer {
+  font-size: 1.2rem;
+}
+
+.selectedContainer select {
+  text-align: center;
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin-left: 0.4rem;
+  color: rgba(9, 97, 121, 1);
+  border-color: rgba(9, 97, 121, 1);
+  border-radius: 10px;
+  cursor: pointer;
+}
+.selectedContainer select:focus {
+  border: none;
+  outline: none;
+}
+.selectedContainer option {
+  cursor: pointer;
+  text-align: center;
 }
 
 .amount {

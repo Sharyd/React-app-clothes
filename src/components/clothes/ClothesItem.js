@@ -1,11 +1,13 @@
 import Card from "../ui/Card";
-
+import { Link } from "react-router-dom";
 import classes from "./ClothesItem.module.css";
 import DataContext from "../../store/data-context";
 import { useContext } from "react";
 const ClothesItem = (props) => {
   const dataCtx = useContext(DataContext);
+
   const { id } = props;
+
   const renderJustOneToCart = () => {
     dataCtx.setJustOneToCart(id);
   };
@@ -24,7 +26,9 @@ const ClothesItem = (props) => {
     <li className={classes.item}>
       <Card>
         <div className={classes.image}>
-          <img src={props.image} alt={props.title} />
+          <Link to={`/${id}`}>
+            <img src={props.image} alt={props.title} />
+          </Link>
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>

@@ -7,6 +7,7 @@ import Layout from "./components/Layout/Layout";
 import ShoppingCart from "./components/cart/ShoppingCart";
 
 import DataContext from "./store/data-context";
+import CartDetailPage from "./pages/CartDetailPage";
 function App() {
   const [showCart, setShowCart] = useState(false);
   const dataCtx = useContext(DataContext);
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path="/women">
             <WomenPage />
+          </Route>
+          <Route path="/:id">
+            <CartDetailPage />
           </Route>
         </Switch>
       </Layout>

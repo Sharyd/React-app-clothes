@@ -15,36 +15,48 @@ const DUMMY_CONTENT = [
     title: "Brilliant tiger shirt",
     image: shirt,
     price: 139.99,
+    content: "This is special shirt, from the real handy work",
+    size: ["S", "M", "L"],
   },
   {
     id: "m2",
     title: "The worldest Black jacket",
     image: jacket,
     price: 119.99,
+    content: "This is special jacket, from the real handy work",
+    size: ["S", "M", "L"],
   },
   {
     id: "m3",
     title: "One most popular T-Shirt",
     image: whiteShirt,
     price: 129.99,
+    content: "This is special T-Shirt, from the real handy work",
+    size: ["S", "M", "L"],
   },
   {
     id: "w1",
     title: "Impressive red dress",
     image: dress,
     price: 199.99,
+    content: "This is special red dress, from the real handy work",
+    size: ["S", "M", "L"],
   },
   {
     id: "w2",
     title: "Famous black coat",
     image: coat,
     price: 99.99,
+    content: "This is special coat, from the real handy work",
+    size: ["S", "M", "L"],
   },
   {
     id: "w3",
     title: "Breathtaking white dress",
     image: whiteDress,
     price: 149.99,
+    content: "This is special white dress, from the real handy work",
+    size: ["S", "M", "L"],
   },
 ];
 
@@ -52,6 +64,7 @@ const DataContext = createContext({
   allClothes: [],
   menRender: [],
   womenRender: [],
+  detailItem: (id) => {},
   dataFunc: () => {},
   removeDataHandler: (id) => {},
   setJustOneToCart: (id) => {},
@@ -89,6 +102,10 @@ export const DataContextProvider = (props) => {
     }
   };
 
+  const getOneDetailItem = (id) => {
+    return data.filter((data) => data.id === id);
+  };
+
   const setDataToNull = useCallback(() => {
     setData([]);
     setAmount(0);
@@ -98,6 +115,7 @@ export const DataContextProvider = (props) => {
     allClothes: data,
     menRender: data.filter((data) => data.id.startsWith("m")),
     womenRender: data.filter((data) => data.id.startsWith("w")),
+    detailItem: getOneDetailItem,
     dataFunc: addDataHandler,
     removeDataHandler,
     setJustOneToCart,

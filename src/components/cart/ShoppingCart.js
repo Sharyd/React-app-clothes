@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import classes from "./ShoppingCart.module.css";
 import Modal from "../ui/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
@@ -12,6 +12,7 @@ const ShoppingCart = (props) => {
   const [isForm, setIsForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+
   const [error, setError] = useState({
     errorMessage: "",
     errorBool: false,
@@ -22,6 +23,7 @@ const ShoppingCart = (props) => {
   const dataCtx = useContext(DataContext);
   const { setDataToNull } = dataCtx;
   const { cartData } = dataCtx;
+
   const hasItems = cartData.length >= 1;
   const { onClose } = props;
 
@@ -37,16 +39,28 @@ const ShoppingCart = (props) => {
     setIsForm(false);
   };
 
+  let myData = [];
+
+  const getUpdatedData = useCallback(
+    (data) => {
+      console.log(data);
+      if (data) {
+        myData.push(data);
+      }
+    },
+    [myData]
+  );
+
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
     try {
       await fetch(
-        "https://clothes-app-e5bfc-default-rtdb.firebaseio.com/clothesOrders.jsn",
+        "https://cloth-3a6df-default-rtdb.firebaseio.com/ordersClothes.json",
         {
           method: "POST",
           body: JSON.stringify({
             user: userData,
-            orderedItems: cartData,
+            orderedItems: [...myData],
           }),
           headers: {
             "Content-Type": "application/json",
@@ -57,7 +71,7 @@ const ShoppingCart = (props) => {
       setIsSubmitting(false);
       setDidSubmit(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setError({
         errorMessage: err + ".Try again, please",
         errorBool: true,
@@ -65,7 +79,6 @@ const ShoppingCart = (props) => {
       throw new Error(err.message || "Something went wrong!");
     }
   };
-  console.log(error);
 
   const setErrorToNull = () => {
     setError(false);
@@ -85,6 +98,7 @@ const ShoppingCart = (props) => {
             image={cloth.image}
             removeHandler={removeHandler}
             onClose={props.onClose}
+            updatedData={getUpdatedData}
           />
         ))}
       </ul>
@@ -118,20 +132,20 @@ const ShoppingCart = (props) => {
       </div>
     </React.Fragment>
   );
-  useEffect(() => {
-    if (error) {
-      const timer = setTimeout(() => {
-        setError({
-          errorMessage: "",
-          errorBool: false,
-        });
-        setIsSubmitting(false);
-      }, 4500);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     const timer = setTimeout(() => {
+  //       setError({
+  //         errorMessage: "",
+  //         errorBool: false,
+  //       });
+  //       setIsSubmitting(false);
+  //     }, 4500);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, [error]);
 
   useEffect(() => {
     if (didSubmit) {
@@ -183,4 +197,4 @@ const ShoppingCart = (props) => {
   );
 };
 
-export default ShoppingCart;
+export default React.memo(ShoppingCart);
