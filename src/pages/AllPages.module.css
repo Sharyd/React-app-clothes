@@ -1,0 +1,9 @@
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: rgba(0, 0, 0, 0.801);
+  height: 2rem;
+  font-size: 2rem;
+}
