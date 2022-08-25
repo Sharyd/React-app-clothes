@@ -4,11 +4,14 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { DataContextProvider } from "./store/data-context";
+import { AuthContextProvider } from "./store/auth-context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <DataContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </DataContextProvider>
+  <AuthContextProvider>
+    <DataContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </DataContextProvider>
+  </AuthContextProvider>
 );

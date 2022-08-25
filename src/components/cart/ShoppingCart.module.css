@@ -3,6 +3,7 @@
   margin: 0;
   padding-left: 6rem;
   padding-right: 6rem;
+
   max-height: 40rem;
   overflow: auto;
   position: relative;
@@ -33,6 +34,9 @@
 .textSubmit {
   color: rgba(9, 97, 121, 1);
   font-size: 1.3rem;
+
+  width: 27rem;
+  text-align: center;
 }
 
 .actions button:hover,
@@ -49,6 +53,8 @@
 .actions .button {
   background-color: rgba(9, 97, 121, 1);
   color: white;
+  margin-top: 1rem;
+  margin-right: 1.5rem;
 }
 
 .loading {
@@ -94,4 +100,21 @@
   height: 0;
   width: 0;
   font-size: 0;
+}
+
+@media only screen and (max-width: 40em) {
+  .cart-items {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  .order {
+    right: -40%;
+  }
+}
+
+@media only screen and (max-width: 27.5em) {
+  .cart-items {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

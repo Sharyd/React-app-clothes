@@ -10,9 +10,10 @@
 
 .modal {
   position: fixed;
-  top: 2.5vh;
-  left: 30.5%;
-  width: 70vh;
+  top: 10vh;
+  left: 30%;
+
+  max-width: 70vh;
   background-color: #fff;
   z-index: 60;
   padding: 1rem;
@@ -39,5 +40,34 @@
   }
   to {
     opacity: 1;
+  }
+}
+@media only screen and (max-width: 75em) {
+  .modal {
+    left: 15vw;
+  }
+}
+@media only screen and (max-width: 55em) {
+  .modal {
+    left: 5vw;
+  }
+}
+@media only screen and (max-width: 50em) {
+  .modal {
+    left: 0;
+    margin: 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 45em) {
+  .modal {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  .modal {
+    top: 5vh;
   }
 }

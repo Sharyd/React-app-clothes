@@ -1,59 +1,58 @@
-import { createContext, useCallback, useState } from "react";
-
-import shirt from "../img/tigerShirt.jpg";
-import coat from "../img/coat.jpg";
-import dress from "../img/redDress.jpg";
-import jacket from "../img/jacket.jpg";
-import whiteDress from "../img/whiteDress.jpg";
-import whiteShirt from "../img/whiteShirt.jpg";
+import { createContext, useCallback, useState, useMemo } from "react";
+import uniqid from "uniqid";
+// import coat from "/coat.jpg";
+// import dress from "/redDress.jpg";
+// import jacket from "/jacket.jpg";
+// import whiteDress from "/whiteDress.jpg";
+// import whiteShirt from "/whiteShirt.jpg";
 
 // import ClothesList from "../components/clothes/ClothesList";
 
 const DUMMY_CONTENT = [
   {
-    id: "m1",
+    id: "m1" + uniqid(),
     title: "Brilliant tiger shirt",
-    image: shirt,
+    image: process.env.PUBLIC_URL + "img/tigerShirt.jpg",
     price: 139.99,
     content: "This is special shirt, from the real handy work",
     size: ["S", "M", "L"],
   },
   {
-    id: "m2",
+    id: "m2" + uniqid(),
     title: "The worldest Black jacket",
-    image: jacket,
+    image: process.env.PUBLIC_URL + "img/jacket.jpg",
     price: 119.99,
     content: "This is special jacket, from the real handy work",
     size: ["S", "M", "L"],
   },
   {
-    id: "m3",
+    id: "m3" + uniqid(),
     title: "One most popular T-Shirt",
-    image: whiteShirt,
+    image: process.env.PUBLIC_URL + "img/whiteShirt.jpg",
     price: 129.99,
     content: "This is special T-Shirt, from the real handy work",
     size: ["S", "M", "L"],
   },
   {
-    id: "w1",
+    id: "w1" + uniqid(),
     title: "Impressive red dress",
-    image: dress,
+    image: process.env.PUBLIC_URL + "img/redDress.jpg",
     price: 199.99,
     content: "This is special red dress, from the real handy work",
     size: ["S", "M", "L"],
   },
   {
-    id: "w2",
+    id: "w2" + uniqid(),
     title: "Famous black coat",
-    image: coat,
+    image: process.env.PUBLIC_URL + "img/coat.jpg",
     price: 99.99,
     content: "This is special coat, from the real handy work",
     size: ["S", "M", "L"],
   },
   {
-    id: "w3",
+    id: "w3" + uniqid(),
     title: "Breathtaking white dress",
-    image: whiteDress,
+    image: process.env.PUBLIC_URL + "img/whiteDress.jpg",
     price: 149.99,
     content: "This is special white dress, from the real handy work",
     size: ["S", "M", "L"],
@@ -79,19 +78,19 @@ export const DataContextProvider = (props) => {
   const [amount, setAmount] = useState(0);
   const [addData, setData] = useState([]);
 
-  const addDataHandler = (clothes) => {
+  const addDataHandler = useCallback((clothes) => {
     setData((prevData) => {
       return [...prevData, clothes];
     });
     setAmount((prevAmount) => prevAmount + 1);
-  };
+  }, []);
 
-  const removeDataHandler = (id) => {
+  const removeDataHandler = useCallback((id) => {
     setData((prevData) => {
       return prevData.filter((data) => data.id !== id);
     });
     setAmount((prevAmount) => prevAmount - 1);
-  };
+  }, []);
 
   const setJustOneToCart = (id) => {
     const existingItemIndex = addData.findIndex((data) => data.id === id);
@@ -112,7 +111,7 @@ export const DataContextProvider = (props) => {
   }, []);
 
   const context = {
-    allClothes: data,
+    allClothes: useMemo(() => data, [data]),
     menRender: data.filter((data) => data.id.startsWith("m")),
     womenRender: data.filter((data) => data.id.startsWith("w")),
     detailItem: getOneDetailItem,

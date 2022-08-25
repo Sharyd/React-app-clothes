@@ -4,4 +4,17 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  justify-items: center;
+}
+
+@media only screen and (max-width: 100em) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 67em) {
+  .list {
+    grid-template-columns: 1fr;
+  }
 }

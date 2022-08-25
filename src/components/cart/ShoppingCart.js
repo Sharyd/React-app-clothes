@@ -132,20 +132,6 @@ const ShoppingCart = (props) => {
       </div>
     </React.Fragment>
   );
-  // useEffect(() => {
-  //   if (error) {
-  //     const timer = setTimeout(() => {
-  //       setError({
-  //         errorMessage: "",
-  //         errorBool: false,
-  //       });
-  //       setIsSubmitting(false);
-  //     }, 4500);
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }
-  // }, [error]);
 
   useEffect(() => {
     if (didSubmit) {
@@ -163,18 +149,6 @@ const ShoppingCart = (props) => {
   if (!hasItems) {
     onClose();
   }
-
-  // if (isSubmitting && !error) {
-  //   return <p className={classes.loading}>Loading...</p>;
-  // }
-
-  // if (!didSubmit && error) {
-  //   return (
-  //     <p className={classes.error} onClick={setErrorToNull}>
-  //       Something went wrong! about sending data
-  //     </p>
-  //   );
-  // }
 
   return (
     <React.Fragment>

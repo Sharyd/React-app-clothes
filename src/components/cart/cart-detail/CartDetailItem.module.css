@@ -1,10 +1,27 @@
 .cartDetail {
   list-style-type: none;
-
-  max-width: 90rem;
+  max-width: 80rem;
   display: block;
   margin: 0 auto;
+  margin-top: 10rem;
+  padding: 0;
   background-color: white;
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 60em) {
+  .cartDetail {
+    margin-top: 12.5rem;
+    max-width: 40rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .cartDetail {
+    margin-top: 8.5rem;
+    max-width: 40rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
 }

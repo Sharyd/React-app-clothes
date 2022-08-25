@@ -18,14 +18,18 @@
   border-radius: 40px;
   padding: 2rem;
 }
+.containerContent {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
 
 .container h2 {
   width: 22rem;
   font-size: 1.9rem;
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
-  /* background-color: silver; */
 }
 
 .price {
@@ -35,9 +39,9 @@
   position: relative;
 }
 
-.price::after {
-  content: "189.99$";
+.priceSale {
   font-weight: 400;
+  width: max-content;
   text-decoration-line: line-through;
   background-color: rgba(9, 97, 121, 1);
   color: rgba(255, 255, 255, 0.61);
@@ -46,23 +50,22 @@
   border-radius: 100px;
   position: absolute;
   top: -15%;
-  right: 9%;
+  right: 10%;
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
   font-size: 1.7rem;
   margin-top: 3rem;
 }
 
 .button {
-  display: block;
+  /* display: block;
   margin: 0 auto;
   margin-right: 20rem;
-  margin-top: -5rem;
+  margin-top: -5rem; */
+  text-align: center;
 
+  margin-top: 5rem;
   font: inherit;
   cursor: pointer;
   color: rgba(9, 97, 121, 1);
@@ -72,4 +75,40 @@
   width: 10rem;
   font-size: 1.5rem;
   border-radius: 4px;
+}
+
+@media only screen and (max-width: 65em) {
+  .button {
+    margin-top: 0rem;
+    font-size: 1.3rem;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 44em) {
+  .container img {
+    width: 55%;
+    padding: 1rem;
+  }
+
+  .price::after {
+    top: -10%;
+    right: 14%;
+  }
+
+  .container {
+    gap: 0rem;
+    flex-direction: column;
+    align-self: center;
+  }
+
+  .container h2 {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.6rem;
+  }
+  .content {
+    font-size: 1.4rem;
+    margin-top: 1rem;
+  }
 }

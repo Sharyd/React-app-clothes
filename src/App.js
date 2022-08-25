@@ -8,11 +8,14 @@ import ShoppingCart from "./components/cart/ShoppingCart";
 
 import DataContext from "./store/data-context";
 import CartDetailPage from "./pages/CartDetailPage";
+import AuthFormPage from "./pages/AuthFormPage";
+import AuthContext from "./store/auth-context";
 function App() {
   const [showCart, setShowCart] = useState(false);
   const dataCtx = useContext(DataContext);
   const { cartData } = dataCtx;
-
+  const authCtx = useContext(AuthContext);
+  console.log(cartData);
   const showCartHandler = () => {
     setShowCart(() => {
       if (cartData.length >= 1) {
@@ -40,6 +43,16 @@ function App() {
           <Route path="/women">
             <WomenPage />
           </Route>
+          {!authCtx.isLoggedIn && (
+            <Route path="/auth">
+              <AuthFormPage />
+            </Route>
+          )}
+          {authCtx.isLoggedIn && (
+            <Route path="/auth">
+              <Redirect to="/" />
+            </Route>
+          )}
           <Route path="/:id">
             <CartDetailPage />
           </Route>

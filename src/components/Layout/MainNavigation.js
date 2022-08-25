@@ -1,17 +1,29 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
+import {
+  HiOutlineUser,
+  HiOutlineMenu,
+  HiOutlineShoppingCart,
+} from "react-icons/hi";
 
 import classes from "./MainNavigation.module.css";
 import DataContext from "../../store/data-context";
+
 const MainNavigation = (props) => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const dataCtx = useContext(DataContext);
 
+  window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
+
   return (
-    <header className={classes.header}>
+    <header className={`${classes.header} ${isScrolled && classes.scrolled}`}>
       <div className={classes.logo}>Fashion Hits</div>
-      <nav>
+      <nav className={classes.nav}>
         <ul>
-          <li>
+          <li className={classes.centerAll}>
             <NavLink to="/all-clothes" activeClassName={classes.active}>
               All Clothes
             </NavLink>
@@ -27,10 +39,17 @@ const MainNavigation = (props) => {
               Women
             </NavLink>
           </li>
-          <button className={classes.button} onClick={props.onClick}>
-            Shopping Cart
-            <span className={classes.badge}>{dataCtx.totalAmount}</span>
-          </button>
+          <div className={classes.iconsContent}>
+            <li>
+              <NavLink to="auth" activeClassName={classes.active}>
+                <HiOutlineUser className={classes.userIcon}></HiOutlineUser>
+              </NavLink>
+            </li>
+            <button className={classes.button} onClick={props.onClick}>
+              <HiOutlineShoppingCart></HiOutlineShoppingCart>
+              <span className={classes.badge}>{dataCtx.totalAmount}</span>
+            </button>
+          </div>
         </ul>
       </nav>
     </header>

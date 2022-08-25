@@ -3,7 +3,12 @@
   height: auto;
   display: flex;
   align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
   justify-content: space-between;
+  position: fixed;
   background: rgb(0, 6, 36);
   background: linear-gradient(
     90deg,
@@ -12,6 +17,16 @@
     rgba(0, 212, 255, 1) 100%
   );
 }
+.header.scrolled {
+  background: rgb(0, 6, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 6, 36, 1) 0%,
+    rgba(9, 97, 121, 1) 50%,
+    rgba(0, 212, 255, 1) 80%
+  );
+}
+
 .logo {
   font-size: 2rem;
   color: rgba(255, 255, 255, 0.842);
@@ -45,22 +60,141 @@
   color: #fff;
 }
 
+.iconsContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.623);
+}
+.iconsContent li {
+  padding-left: 1rem;
+  margin-right: auto;
+  align-self: center;
+}
+.userIcon {
+  width: 2.2rem;
+  height: 2.2rem;
+  align-self: center;
+  position: relative;
+  top: 0.1rem;
+}
+
 .badge {
   background-color: rgba(0, 212, 255, 1);
   color: rgba(255, 255, 255, 0.897);
   border-radius: 10px;
   padding: 0.3rem 0.6rem;
-  margin-left: 0.5rem;
+  position: relative;
+  top: -0.5rem;
+  left: -0.2rem;
 }
 .button {
   font-size: 1.2rem;
-  display: inline-block;
+  display: flex;
+  gap: 0.5rem;
+  background-color: rgba(0, 0, 0, 0);
   font-weight: 600;
   line-height: 1.3;
   padding: 0.8rem 1.4rem;
   border: 0;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.623);
-  border-radius: 4px;
   cursor: pointer;
+}
+.button svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.2s;
+}
+
+.button svg:hover {
+  color: #fff;
+}
+
+@media only screen and (max-width: 52em) {
+  .logo {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  .header ul {
+    margin: 1.4rem;
+    gap: 2rem;
+  }
+  .header li {
+    margin-right: 1rem;
+  }
+
+  .header a {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .logo {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  .header ul {
+    margin: 1rem;
+
+    gap: 2rem;
+  }
+  .header li {
+    margin-right: 1rem;
+  }
+
+  .header a {
+    font-size: 1rem;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    gap: 0.3rem;
+  }
+  .userIcon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .button svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    margin-left: -0.3rem;
+    margin-top: -0.3rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+@media only screen and (max-width: 30.5em) {
+  .nav {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  .button {
+    font-size: 1rem;
+    padding: 0.5rem 0.6rem;
+    gap: 0.4rem;
+  }
+
+  .header ul {
+    padding: 0;
+    margin: 1.2rem;
+    gap: 0rem;
+  }
+  .userIcon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }

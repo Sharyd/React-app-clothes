@@ -1,0 +1,123 @@
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+  flex-direction: column;
+}
+.auth h1 {
+  font-size: 2.5rem;
+  color: rgba(9, 97, 121, 1);
+
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.auth h1::after {
+  content: "";
+  position: absolute;
+  top: 70px;
+  left: 0;
+  width: 11.5rem;
+
+  color: rgba(9, 97, 121, 1);
+  border: 2px solid #000;
+  animation: animatedLine 2s infinite;
+}
+@keyframes animatedLine {
+  from {
+    width: 0rem;
+    opacity: 1;
+  }
+
+  to {
+    width: 12.5rem;
+    opacity: 0;
+  }
+}
+
+.containerContent {
+  background-color: rgba(9, 97, 121, 1);
+  border-radius: 50px;
+  width: 30rem;
+  height: 35rem;
+  display: flex;
+
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.form-control.invalid {
+  color: rgba(255, 0, 0, 0.8);
+  align-self: center;
+}
+.error-text {
+  color: rgba(255, 0, 0, 0.8);
+}
+
+.form-control label {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 2rem 2rem 2rem 0.5rem;
+}
+
+.form-control input {
+  align-self: center;
+  width: 20rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+.form-control input:focus {
+  outline: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.actions button {
+  padding: 0.7rem 1.4rem;
+  outline: none;
+  font-size: 1.3rem;
+  border-radius: 100px;
+  border: none;
+  background-color: rgba(9, 97, 121, 1);
+  color: #fff;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: animatedButton 0.4s;
+}
+.actions button:active,
+.actions button:hover {
+  background-color: rgb(17, 137, 170);
+}
+
+@keyframes animatedButton {
+  from {
+    transform: translate(-50%);
+  }
+
+  to {
+    transform: translate(0%);
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  .containerContent {
+    width: 22rem;
+  }
+}
