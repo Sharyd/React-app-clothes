@@ -8,3 +8,75 @@
   height: 2rem;
   font-size: 2rem;
 }
+
+.headingLine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.801);
+  margin-top: 10rem;
+  height: 2rem;
+  font-size: 2rem;
+}
+
+.logout {
+  color: rgba(9, 97, 121, 1);
+  font-size: 2rem;
+  position: absolute;
+  top: 0rem;
+  right: 10%;
+  cursor: pointer;
+}
+
+.containerTwo {
+  position: relative;
+}
+
+.logoutText {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  position: relative;
+}
+.headingLine::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+  width: max-content;
+  color: rgba(9, 97, 121, 1);
+  border: 2px solid rgba(9, 97, 121, 1);
+  animation: animatedLine 2s infinite;
+}
+@keyframes animatedLine {
+  from {
+    width: 0rem;
+    opacity: 1;
+  }
+
+  to {
+    width: 12.5rem;
+    opacity: 0;
+  }
+}
+/* 
+@media only screen and (max-width: 52em) {
+  .logo {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+
+  .header ul {
+    margin: 1.4rem;
+    gap: 2rem;
+  }
+  .header li {
+    margin-right: 1rem;
+  }
+
+  .header a {
+    font-size: 1.3rem;
+  }
+} */

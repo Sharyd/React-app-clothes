@@ -3,17 +3,17 @@ import classes from "./AuthForm.module.css";
 import useInput from "../../hooks/use-input";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
-const includesFunction = (value) => {
-  let regexDomains = /\b\w{2,6}\b/; // regex checking if they are last 2 or 3 char in domain
-  // let domainCz = "cz";
-  // let domainCom = "com";
-
-  return value.includes("@" + ".") + value.match(regexDomains);
-};
 
 const passwordChars = (value) => {
   const regexChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
   return value.match(regexChars) && value.length >= 7;
+};
+const includesFunction = (value) => {
+  let regexDomains = /\.\b\w{2,5}\b/; // regex checking if they are last 2 or 3 char in domain
+  // let domainCz = "cz";
+  // let domainCom = "com";
+
+  return value.match(regexDomains);
 };
 
 const AuthForm = () => {
@@ -33,7 +33,10 @@ const AuthForm = () => {
     valueChangeHandler: emailChangeHandler,
     valueBlurHandler: emailInputBlurHandler,
     reset: resetEmailInput,
-  } = useInput((value) => value.trim() !== "" && includesFunction(value));
+  } = useInput(
+    (value) =>
+      value.trim() !== "" && includesFunction(value) && value.includes("@")
+  );
 
   const {
     value: enteredPassword,
@@ -88,6 +91,9 @@ const AuthForm = () => {
         } else {
           res.json().then((data) => {
             let errorMessage = "Authentication failed!";
+            if (data) {
+              errorMessage = "User exist!";
+            }
 
             setError(errorMessage);
             throw new Error(errorMessage);
@@ -114,7 +120,9 @@ const AuthForm = () => {
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "SignUp"}</h1>
+      <div className={classes.loginContainer}>
+        <h1>{isLogin ? "Login" : "SignUp"}</h1>
+      </div>
 
       <form onSubmit={submitHandler} className={classes.form}>
         <div className={classes.containerContent}>
@@ -155,7 +163,8 @@ const AuthForm = () => {
             />
             {passwordInputHasError && (
               <p className={classes["error-text"]}>
-                Enter a valid password! (Must contains special char!)
+                Enter a valid password! <br></br>(one special char, min length
+                7)
               </p>
             )}
           </div>
@@ -164,7 +173,9 @@ const AuthForm = () => {
               <button>{isLogin ? "Login" : "Create Account"}</button>
             )}
             {isLoading && <p>Sending request...</p>}
-            {error && <p>{error} Try again.</p>}
+            {error && (
+              <p className={classes["error-text"]}>{error} Try again.</p>
+            )}
 
             <button
               type="button"

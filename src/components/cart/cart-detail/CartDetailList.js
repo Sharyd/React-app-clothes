@@ -20,7 +20,7 @@ const CartDetailList = (props) => {
       id: props.id,
       name: props.title,
       amount: props.amount,
-      price: props.price,
+      price: authCtx.isLoggedIn ? forAuthenticatedPrice : props.price,
       image: props.image,
     });
   };

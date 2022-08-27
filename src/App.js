@@ -9,6 +9,7 @@ import ShoppingCart from "./components/cart/ShoppingCart";
 import DataContext from "./store/data-context";
 import CartDetailPage from "./pages/CartDetailPage";
 import AuthFormPage from "./pages/AuthFormPage";
+import ProfilePage from "./pages/ProfilePage";
 import AuthContext from "./store/auth-context";
 function App() {
   const [showCart, setShowCart] = useState(false);
@@ -48,10 +49,12 @@ function App() {
               <AuthFormPage />
             </Route>
           )}
-          {authCtx.isLoggedIn && (
-            <Route path="/auth">
-              <Redirect to="/" />
+          {authCtx.isLoggedIn ? (
+            <Route path="/profile">
+              <ProfilePage />
             </Route>
+          ) : (
+            <Redirect to="/auth" />
           )}
           <Route path="/:id">
             <CartDetailPage />

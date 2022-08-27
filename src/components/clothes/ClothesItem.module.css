@@ -80,4 +80,7 @@
   .actions button {
     font-size: 1.3rem;
   }
+  .priceSale {
+    right: 7%;
+  }
 }

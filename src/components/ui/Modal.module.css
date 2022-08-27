@@ -10,10 +10,11 @@
 
 .modal {
   position: fixed;
-  top: 10vh;
-  left: 30%;
+  top: 15vh;
+  left: 32.5%;
 
-  max-width: 70vh;
+  max-width: 60vh;
+
   background-color: #fff;
   z-index: 60;
   padding: 1rem;
@@ -44,7 +45,7 @@
 }
 @media only screen and (max-width: 75em) {
   .modal {
-    left: 15vw;
+    left: 25vw;
   }
 }
 @media only screen and (max-width: 55em) {
@@ -68,6 +69,6 @@
 
 @media only screen and (max-width: 25em) {
   .modal {
-    top: 5vh;
+    top: 9vh;
   }
 }

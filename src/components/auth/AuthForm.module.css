@@ -5,7 +5,11 @@
   height: 65vh;
   flex-direction: column;
 }
-.auth h1 {
+
+.loginContainer {
+  position: relative;
+}
+.loginContainer h1 {
   font-size: 2.5rem;
   color: rgba(9, 97, 121, 1);
 
@@ -15,12 +19,13 @@
   margin-bottom: 2.5rem;
 }
 
-.auth h1::after {
+.loginContainer h1::after {
   content: "";
   position: absolute;
-  top: 70px;
+  top: 75px;
   left: 0;
-  width: 11.5rem;
+
+  width: max-content;
 
   color: rgba(9, 97, 121, 1);
   border: 2px solid #000;

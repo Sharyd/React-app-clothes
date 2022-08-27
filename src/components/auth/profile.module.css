@@ -1,0 +1,84 @@
+.container {
+  height: 70vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 5rem;
+}
+.containerImg {
+  max-width: 25rem;
+}
+
+.containerImg img {
+  max-width: 100%;
+}
+
+.heading {
+  font-size: 1.4rem;
+
+  position: relative;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: -5rem;
+
+  gap: 1rem;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.form-control label {
+  color: rgba(9, 97, 121, 1);
+  font-size: 1.5rem;
+}
+
+.form-control input {
+  font-size: 1.4rem;
+  border: none;
+  box-shadow: 0 0 2px 1px rgba(9, 97, 121, 1);
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  outline: none;
+}
+
+.actions {
+  align-self: center;
+  margin-top: 1.5rem;
+}
+.actions button {
+  font-size: 1.3rem;
+  outline: none;
+  box-shadow: 0 0 2px 1px rgba(9, 97, 121, 1);
+  border: none;
+  border-radius: 15px;
+  padding: 0.7rem 1.4rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(9, 97, 121, 1);
+  transition: all 0.2s;
+}
+.actions button:active,
+.actions button:hover {
+  background-color: rgb(17, 137, 170);
+}
+
+.error-text {
+  color: rgba(141, 17, 17, 0.9);
+}
+
+@media only screen and (max-width: 40em) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .heading {
+    align-self: center;
+    text-align: center;
+  }
+}

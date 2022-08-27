@@ -1,10 +1,10 @@
 .cart-items {
   list-style: none;
   margin: 0;
-  padding-left: 6rem;
-  padding-right: 6rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
 
-  max-height: 40rem;
+  max-height: 25rem;
   overflow: auto;
   position: relative;
 }
@@ -102,10 +102,20 @@
   font-size: 0;
 }
 
+@media only screen and (max-width: 60em) {
+  .cart-items {
+    max-height: 20rem;
+  }
+  .order {
+    right: -40%;
+  }
+}
+
 @media only screen and (max-width: 40em) {
   .cart-items {
     padding-left: 3rem;
     padding-right: 3rem;
+    max-height: 15rem;
   }
   .order {
     right: -40%;
@@ -116,5 +126,6 @@
   .cart-items {
     padding-left: 1rem;
     padding-right: 1rem;
+    max-height: 11rem;
   }
 }
