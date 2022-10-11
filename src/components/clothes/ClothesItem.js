@@ -12,17 +12,17 @@ const ClothesItem = (props) => {
   const { price } = props;
   const forAuthenticatedPrice = price / 1.5;
 
-  const renderJustOneToCart = () => {
-    dataCtx.setJustOneToCart(id);
-  };
+  // const renderJustOneToCart = () => {
+  //   dataCtx.setJustOneToCart(id);
+  // };
 
   const dataHandler = () => {
-    dataCtx.dataFunc({
+    dataCtx.addItem({
       id: props.id,
       name: props.title,
-      amount: props.amount,
       price: authCtx.isLoggedIn ? forAuthenticatedPrice : props.price,
       image: props.image,
+      amount: 1,
     });
   };
 
@@ -37,7 +37,7 @@ const ClothesItem = (props) => {
         <div className={classes.content}>
           <h3>{props.title}</h3>
           <h3 className={classes.price}>
-            {authCtx.isLoggedIn ? forAuthenticatedPrice.toFixed(2) : price}$
+            {authCtx.isLoggedIn ? forAuthenticatedPrice.toFixed(0) : price}$
             {authCtx.isLoggedIn && (
               <span className={classes.priceSale}>{price}$</span>
             )}
@@ -47,7 +47,7 @@ const ClothesItem = (props) => {
           <button
             onClick={() => {
               dataHandler();
-              renderJustOneToCart();
+              // renderJustOneToCart();
             }}
           >
             To Cart

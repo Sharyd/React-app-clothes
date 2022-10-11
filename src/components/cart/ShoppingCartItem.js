@@ -1,6 +1,5 @@
 import classes from "./ShoppingCartItem.module.css";
-import { useState, useContext, Fragment, useCallback } from "react";
-import DataContext from "../../store/data-context";
+import { useState, Fragment } from "react";
 
 const ShoppingCartItem = (props) => {
   const options = [
@@ -9,36 +8,10 @@ const ShoppingCartItem = (props) => {
     { value: "L", text: "L" },
   ];
 
-  const price = `${props.price.toFixed(1)}`;
-  const dataCtx = useContext(DataContext);
-  const { removeDataHandler } = dataCtx;
-  const [amount, setAmount] = useState(1);
-  const [uprice, setPrice] = useState(+price);
+  const price = `${props.price.toFixed(0)}`;
   const [selectedSize, setSelectedSize] = useState(options[0].value);
 
-  const { id, name } = props;
-
-  console.log(selectedSize);
-  const addAmountHandler = useCallback(() => {
-    setAmount((prevAmount) => prevAmount + 1);
-    setPrice(price * (amount + 1));
-  }, [price, amount]);
-
-  const deleteAmountHandler = useCallback(() => {
-    setAmount((prevAmount) => {
-      if (prevAmount <= 1) {
-        return removeDataHandler(id);
-      } else {
-        setPrice(price * (amount - 1));
-        return prevAmount - 1;
-      }
-    });
-  }, [amount, price, removeDataHandler, id]);
-
   props.updatedData({
-    name: name,
-    amount: amount,
-    price: uprice,
     size: selectedSize,
   });
 
@@ -71,16 +44,16 @@ const ShoppingCartItem = (props) => {
 
           <div className={classes.summary}>
             <span className={classes.amount}>
-              x {amount < 0 ? amount === 0 : amount}
+              x {props.amount < 0 ? props.amount === 0 : props.amount}
             </span>
             <span className={classes.price}>
-              ${uprice < 0 ? uprice === 0 : uprice}
+              ${price < 0 ? price === 0 : price}
             </span>
           </div>
         </div>
         <div className={classes.actions}>
-          <button onClick={deleteAmountHandler}>−</button>
-          <button onClick={addAmountHandler}>+</button>
+          <button onClick={props.onAdd}>+</button>
+          <button onClick={props.onRemove}>−</button>
         </div>
       </li>
     </Fragment>

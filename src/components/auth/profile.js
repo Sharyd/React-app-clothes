@@ -1,22 +1,58 @@
 import { useHistory } from "react-router-dom";
 
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
+import { ClipLoader } from "react-spinners";
 import AuthContext from "../../store/auth-context";
 import classes from "./profile.module.css";
+import { storage } from "../../firebase";
 
+import { getDownloadURL, ref, uploadString } from "@firebase/storage";
 const passwordChars = (value) => {
   const regexChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
   return value.match(regexChars) && value.length >= 7;
 };
 
 const Profile = () => {
+  const [selectedFile, setSelectedFile] = useState([]);
+  const [fileURL, setFileUrl] = useState("");
   const [formInputsValidity, setFormInputsValidity] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const history = useHistory();
   const newPasswordInputRef = useRef();
   const authCtx = useContext(AuthContext);
   const { token } = authCtx;
+
+  useEffect(() => {
+    getDownloadURL(ref(storage, "images")).then((url) => {
+      setFileUrl(url);
+    });
+  }, []);
+
+  const sendImageProfile = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    const imageRef = ref(storage, "images");
+
+    if (selectedFile) {
+      await uploadString(imageRef, selectedFile, "data_url").then(async () => {
+        const downloadURL = await getDownloadURL(imageRef);
+        setFileUrl(downloadURL);
+      });
+    }
+
+    setIsLoading(false);
+  };
+
+  const addImage = (e) => {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
+  };
 
   const formSubmit = (e) => {
     e.preventDefault();
@@ -70,11 +106,20 @@ const Profile = () => {
   return (
     <div className={classes.container}>
       <div className={classes.containerImg}>
-        <img
-          src={process.env.PUBLIC_URL + "img/tigerShirt.jpg"}
-          alt="profile img"
-        ></img>
+        {fileURL ? (
+          <img src={fileURL} alt="profile img"></img>
+        ) : (
+          <ClipLoader color="#096179" className={classes.loader} />
+        )}
+        {isLoading && fileURL && (
+          <p className={classes.loading}>Loading image...</p>
+        )}
         <h2 className={classes.heading}>Change your profile image</h2>
+        <div className={classes.item}>
+          <label>Choose image </label>
+          <input type="file" onChange={addImage} />
+          <button onClick={sendImageProfile}>Save image</button>
+        </div>
       </div>
       <form className={classes.form} onSubmit={formSubmit}>
         <h2 className={classes.heading}>Change your password</h2>
@@ -95,7 +140,7 @@ const Profile = () => {
           )}
         </div>
         <div className={classes.actions}>
-          {isLoading && <p>Sending request...</p>}
+          {isLoading && <p className={classes.loading}>Sending request...</p>}
           <button type="submit">Change password</button>
         </div>
       </form>

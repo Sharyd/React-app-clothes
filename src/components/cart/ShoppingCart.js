@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import classes from "./ShoppingCart.module.css";
 import Modal from "../ui/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
@@ -12,24 +12,25 @@ const ShoppingCart = (props) => {
   const [isForm, setIsForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+  const [size] = useState([]);
 
   const [error, setError] = useState({
     errorMessage: "",
     errorBool: false,
   });
-
-  // const [itemInCart, setItemInCart] = useState(false);
-
   const dataCtx = useContext(DataContext);
   const { setDataToNull } = dataCtx;
-  const { cartData } = dataCtx;
-
-  const hasItems = cartData.length >= 1;
+  const { items, totalAmount } = dataCtx;
+  console.log(items);
+  const hasItems = items.length >= 1;
   const { onClose } = props;
 
-  const removeHandler = (clothes) => {
-    dataCtx.removeDataHandler({ ...clothes });
+  const removeHandler = (id) => {
+    dataCtx.removeItem(id);
     setIsForm(false);
+  };
+  const cartItemAddHandler = (item) => {
+    dataCtx.addItem({ ...item, amount: 1 });
   };
 
   const formHandler = () => {
@@ -39,16 +40,13 @@ const ShoppingCart = (props) => {
     setIsForm(false);
   };
 
-  let myData = [];
-
-  const getUpdatedData = useCallback(
-    (data) => {
-      console.log(data);
-      if (data) {
-        myData.push(data);
+  const userSizeHandler = useCallback(
+    (userSize) => {
+      if (userSize) {
+        size.push(userSize);
       }
     },
-    [myData]
+    [size]
   );
 
   const submitOrderHandler = async (userData) => {
@@ -60,7 +58,10 @@ const ShoppingCart = (props) => {
           method: "POST",
           body: JSON.stringify({
             user: userData,
-            orderedItems: [...myData],
+            orderedItems: {
+              data: dataCtx.items,
+              size: size,
+            },
           }),
           headers: {
             "Content-Type": "application/json",
@@ -84,11 +85,11 @@ const ShoppingCart = (props) => {
     setError(false);
     setIsSubmitting(false);
   };
-
+  console.log(items);
   const cartItems1 = (
     <Fragment>
       <ul className={classes["cart-items"]}>
-        {cartData.map((cloth) => (
+        {items.map((cloth) => (
           <ShoppingCartItem
             key={cloth.id}
             id={cloth.id}
@@ -96,12 +97,17 @@ const ShoppingCart = (props) => {
             price={cloth.price}
             amount={cloth.amount}
             image={cloth.image}
-            removeHandler={removeHandler}
+            onRemove={() => removeHandler(cloth.id)}
+            onAdd={() => cartItemAddHandler(cloth)}
             onClose={props.onClose}
-            updatedData={getUpdatedData}
+            updatedData={userSizeHandler}
           />
         ))}
       </ul>
+      <div className={classes.total}>
+        <span>Total Price:</span>
+        <span className={classes.totalPrice}>${totalAmount.toFixed(0)}</span>
+      </div>
 
       {!isForm && hasItems && (
         <button className={classes.order} onClick={formHandler}>
@@ -171,4 +177,4 @@ const ShoppingCart = (props) => {
   );
 };
 
-export default React.memo(ShoppingCart);
+export default ShoppingCart;

@@ -4,7 +4,7 @@
   align-items: center;
 
   color: rgba(0, 0, 0, 0.801);
-  margin-top: 8rem;
+  margin-top: 10rem;
   height: 2rem;
   font-size: 2rem;
 }
@@ -28,14 +28,22 @@
   cursor: pointer;
 }
 
-.containerTwo {
-  position: relative;
+.logoutText {
+  font-size: 1.1rem;
+  font-weight: 500;
+  position: absolute;
+  top: 1.6rem;
+  right: 10%;
+  opacity: 0;
+  transition: all 0.2s;
 }
 
-.logoutText {
-  position: absolute;
-  top: 0;
-  left: 0;
+.logout:hover + .logoutText {
+  opacity: 1;
+}
+
+.containerTwo {
+  position: relative;
 }
 
 .container {
@@ -44,12 +52,13 @@
 .headingLine::after {
   content: "";
   position: absolute;
-  top: 40px;
+  top: 3rem;
   width: max-content;
   color: rgba(9, 97, 121, 1);
   border: 2px solid rgba(9, 97, 121, 1);
   animation: animatedLine 2s infinite;
 }
+
 @keyframes animatedLine {
   from {
     width: 0rem;

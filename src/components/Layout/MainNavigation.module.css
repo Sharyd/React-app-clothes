@@ -6,7 +6,6 @@
   top: 0;
   left: 0;
   z-index: 999;
-
   justify-content: space-between;
   position: fixed;
   background: rgb(0, 6, 36);
@@ -14,7 +13,7 @@
     90deg,
     rgba(0, 6, 36, 1) 0%,
     rgba(9, 97, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
+    rgba(0, 192, 255, 1) 100%
   );
 }
 .header.scrolled {
@@ -23,16 +22,25 @@
     90deg,
     rgba(0, 6, 36, 1) 0%,
     rgba(9, 97, 121, 1) 50%,
-    rgba(0, 212, 255, 1) 80%
+    rgba(0, 205, 255, 1) 80%
   );
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.842);
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Lora", serif;
+  font-weight: 500;
   transform: rotate(5deg);
   margin-left: 2rem;
+  position: relative;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 0.25rem;
 }
 
 .header ul {
@@ -41,7 +49,7 @@
   margin-right: 3rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.3rem;
   justify-content: center;
 }
 .header li {
@@ -50,7 +58,7 @@
 
 .header a {
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.82);
   transition: all 0.15s;
 }
@@ -74,15 +82,15 @@
   align-self: center;
 }
 .userIcon {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   align-self: center;
   position: relative;
   top: 0.2rem;
 }
 .userIcon2 {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   align-self: center;
   position: relative;
   color: rgba(255, 255, 255, 0.8);
@@ -99,9 +107,34 @@
   top: -0.5rem;
   left: -0.2rem;
 }
+.animatedBadge {
+  animation: animatedBadge 0.4s linear;
+}
+
+@keyframes animatedBadge {
+  0% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .button {
   font-size: 1.2rem;
   display: flex;
+  align-items: center;
+
   gap: 0.5rem;
   background-color: rgba(0, 0, 0, 0);
   font-weight: 600;
@@ -112,8 +145,8 @@
   cursor: pointer;
 }
 .button svg {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   color: rgba(255, 255, 255, 0.8);
   transition: all 0.2s;
 }
@@ -130,7 +163,7 @@
   position: absolute;
   background-color: rgba(0, 0, 0, 0.623);
   top: 4.5rem;
-  left: -3rem;
+  left: -4rem;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   animation: animatedFeedback 0.2s linear;
@@ -150,7 +183,7 @@
 
 @media only screen and (max-width: 52em) {
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-left: 1rem;
   }
 
@@ -159,28 +192,16 @@
     gap: 2rem;
   }
   .header li {
-    margin-right: 1rem;
-  }
-
-  .header a {
-    font-size: 1.3rem;
+    margin-right: 0.5rem;
   }
 }
 
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 45em) {
   .logo {
     font-size: 1rem;
     margin-left: 0.5rem;
   }
 
-  .header ul {
-    margin: 1rem;
-
-    gap: 2rem;
-  }
-  .header li {
-    margin-right: 1rem;
-  }
   .iconsContent li {
     padding-left: 0.5rem;
   }
@@ -226,9 +247,7 @@
   }
 
   .header ul {
-    padding: 0;
-    margin: 1.2rem;
-    gap: 0rem;
+    gap: 0.5rem;
   }
   .userIcon,
   .userIcon2 {
@@ -242,12 +261,12 @@
   }
   .userFeedback {
     top: 3rem;
-    left: -4rem;
+    left: -6rem;
     font-size: 0.8rem;
   }
 }
 
-@media only screen and (max-width: 25.5em) {
+@media only screen and (max-width: 27.5em) {
   .nav {
     display: flex;
     align-items: flex-start;
@@ -255,7 +274,7 @@
   }
   .button {
     font-size: 1rem;
-    padding: 0.5rem 0.6rem;
+    padding: 1rem;
     gap: 0.3rem;
   }
 

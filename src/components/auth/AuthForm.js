@@ -3,15 +3,14 @@ import classes from "./AuthForm.module.css";
 import useInput from "../../hooks/use-input";
 import AuthContext from "../../store/auth-context";
 import { useHistory } from "react-router-dom";
+import DataContext from "../../store/data-context";
 
 const passwordChars = (value) => {
   const regexChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
   return value.match(regexChars) && value.length >= 7;
 };
 const includesFunction = (value) => {
-  let regexDomains = /\.\b\w{2,5}\b/; // regex checking if they are last 2 or 3 char in domain
-  // let domainCz = "cz";
-  // let domainCom = "com";
+  const regexDomains = /\.\b\w{2,5}\b/; // regex checking if they are last 2 or 3 char in domain
 
   return value.match(regexDomains);
 };
@@ -25,6 +24,8 @@ const AuthForm = () => {
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+  const dataCtx = useContext(DataContext);
+  const { setDataToNull } = dataCtx;
 
   const {
     value: enteredEmail,
@@ -91,8 +92,10 @@ const AuthForm = () => {
         } else {
           res.json().then((data) => {
             let errorMessage = "Authentication failed!";
-            if (data) {
+            if (data && !isLogin) {
               errorMessage = "User exist!";
+            } else {
+              errorMessage = "Invalid password or email!";
             }
 
             setError(errorMessage);
@@ -105,18 +108,12 @@ const AuthForm = () => {
         authCtx.login(data.idToken, Date.now() + data.expiresIn * 1000);
         history.replace("/");
         setError(false);
+        setDataToNull();
       })
       .catch((err) => {
         setError(err.message);
       });
   };
-
-  // const passwordInputClasses = `${passwordInputHasError
-  //   ? {{classes.invalid}}
-  //   : classes["form-control"]};`
-  // const emailInputClasses = emailInputHasError
-  //   ? "form-control invalid"
-  //   : "form-control";
 
   return (
     <section className={classes.auth}>

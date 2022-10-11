@@ -45,7 +45,7 @@
   text-decoration-line: line-through;
   background-color: rgba(9, 97, 121, 1);
   color: rgba(255, 255, 255, 0.61);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   padding: 0.2rem 0.5rem;
   border-radius: 100px;
   position: absolute;
@@ -77,7 +77,7 @@
   border-radius: 4px;
 }
 
-@media only screen and (max-width: 65em) {
+@media only screen and (max-width: 60em) {
   .button {
     margin-top: 0rem;
     font-size: 1.3rem;
@@ -85,7 +85,7 @@
   }
 }
 
-@media only screen and (max-width: 44em) {
+@media only screen and (max-width: 45em) {
   .container img {
     width: 55%;
     padding: 1rem;

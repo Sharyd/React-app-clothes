@@ -11,15 +11,11 @@ const CartDetailList = (props) => {
 
   const { id } = props;
 
-  const renderJustOneToCart = () => {
-    dataCtx.setJustOneToCart(id);
-  };
-
   const dataHandler = () => {
-    dataCtx.dataFunc({
+    dataCtx.addItem({
       id: props.id,
       name: props.title,
-      amount: props.amount,
+      amount: 1,
       price: authCtx.isLoggedIn ? forAuthenticatedPrice : props.price,
       image: props.image,
     });
@@ -33,7 +29,7 @@ const CartDetailList = (props) => {
           <h2>
             {props.title}
             <span className={classes.price}>
-              {authCtx.isLoggedIn ? forAuthenticatedPrice.toFixed(2) : price}$
+              {authCtx.isLoggedIn ? forAuthenticatedPrice.toFixed(0) : price}$
               {authCtx.isLoggedIn && (
                 <span className={classes.priceSale}>{price}$</span>
               )}
@@ -44,7 +40,6 @@ const CartDetailList = (props) => {
             className={classes.button}
             onClick={() => {
               dataHandler();
-              renderJustOneToCart();
             }}
           >
             To Cart

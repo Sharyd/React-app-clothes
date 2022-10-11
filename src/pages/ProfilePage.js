@@ -5,14 +5,17 @@ import { useHistory } from "react-router-dom";
 import { HiLogout } from "react-icons/hi";
 import classes from "./AllPages.module.css";
 import AuthContext from "../store/auth-context";
-
+import DataContext from "../store/data-context";
 const ProfilePage = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
+  const datactx = useContext(DataContext);
+  const { setDataToNull } = datactx;
 
   const logoutHandler = () => {
     authCtx.logout();
+    setDataToNull();
     history.push("/auth");
   };
   return (
@@ -26,6 +29,7 @@ const ProfilePage = () => {
                 className={classes.logout}
                 onClick={logoutHandler}
               ></HiLogout>
+              <span className={classes.logoutText}>logout</span>
             </Fragment>
           )}
         </div>

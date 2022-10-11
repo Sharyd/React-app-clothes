@@ -4,6 +4,7 @@
   justify-content: center;
   height: 65vh;
   flex-direction: column;
+  margin-top: 5rem;
 }
 
 .loginContainer {
@@ -22,13 +23,14 @@
 .loginContainer h1::after {
   content: "";
   position: absolute;
-  top: 75px;
+  top: 5rem;
   left: 0;
 
   width: max-content;
 
   color: rgba(9, 97, 121, 1);
-  border: 2px solid #000;
+  border: 2px solid rgba(0, 0, 0, 0.801);
+  background-color: rgba(0, 0, 0, 1);
   animation: animatedLine 2s infinite;
 }
 @keyframes animatedLine {
@@ -121,8 +123,11 @@
   }
 }
 
-@media only screen and (max-width: 25em) {
+@media only screen and (max-width: 27.5em) {
+  .auth {
+    margin-top: 10rem;
+  }
   .containerContent {
-    width: 22rem;
+    max-width: 27rem;
   }
 }

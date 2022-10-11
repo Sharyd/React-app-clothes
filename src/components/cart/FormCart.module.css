@@ -67,7 +67,7 @@
   background-color: #ffeff1;
 }
 
-@media only screen and (max-width: 25em) {
+@media only screen and (max-width: 27.5em) {
   .form {
     padding: 0.3rem;
   }

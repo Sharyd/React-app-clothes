@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@500;600&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,7 +10,24 @@ html {
   font-size: 99%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@media only screen and (max-width: 55em) {
+  html {
+    font-size: 99%;
+  }
+}
+
+@media only screen and (max-width: 45em) {
+  html {
+    font-size: 90%;
+  }
+}
+@media only screen and (max-width: 34em) {
+  html {
+    font-size: 80%;
+  }
+}
+@media only screen and (max-width: 25em) {
+  html {
+    font-size: 60%;
+  }
 }

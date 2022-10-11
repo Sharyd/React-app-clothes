@@ -5,19 +5,26 @@ import { HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
 import classes from "./MainNavigation.module.css";
 import DataContext from "../../store/data-context";
 import AuthContext from "../../store/auth-context";
+import Logo from "../ui/Logo";
 
 const MainNavigation = (props) => {
+  const [btnAnimated, setBtnAnimated] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [userIconFeedback, setUserIconFeedback] = useState(null);
   const dataCtx = useContext(DataContext);
   const authCtx = useContext(AuthContext);
   const { isLoggedIn } = authCtx;
+  const { items } = dataCtx;
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
 
+  const numberOfCartItems = items.reduce((curNumber, item) => {
+    console.log(curNumber, item.amount);
+    return curNumber + item.amount;
+  }, 0);
   const handlerUserIconFeedback = () => {
     setUserIconFeedback("Welcome to your profile!");
   };
@@ -34,10 +41,30 @@ const MainNavigation = (props) => {
     }
   }, [userIconFeedback]);
 
+  const animatedBadgeClasses = `${classes.badge} ${
+    btnAnimated ? classes.animatedBadge : ""
+  }`;
+
+  useEffect(() => {
+    if (items.length === 0) return;
+    setBtnAnimated(true);
+
+    const timer = setTimeout(() => {
+      setBtnAnimated(false);
+    }, 400);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [items]);
+
   return (
     <Fragment>
       <header className={`${classes.header} ${isScrolled && classes.scrolled}`}>
-        <div className={classes.logo}>Fashion Hits</div>
+        <div className={classes.logoContainer}>
+          <Logo />
+          <div className={classes.logo}>Fashion Hits</div>
+        </div>
         <nav className={classes.nav}>
           <ul>
             <li className={classes.centerAll}>
@@ -77,7 +104,9 @@ const MainNavigation = (props) => {
 
               <button className={classes.button} onClick={props.onClick}>
                 <HiOutlineShoppingCart></HiOutlineShoppingCart>
-                <span className={classes.badge}>{dataCtx.totalAmount}</span>
+                <span className={animatedBadgeClasses}>
+                  {numberOfCartItems}
+                </span>
               </button>
             </div>
           </ul>

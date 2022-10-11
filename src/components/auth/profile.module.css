@@ -5,9 +5,18 @@
   justify-content: center;
   gap: 2.5rem;
   margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 .containerImg {
   max-width: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loader {
+  margin: 0 auto;
 }
 
 .containerImg img {
@@ -23,8 +32,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  align-self: center;
-  margin-top: -5rem;
+
+  margin-top: 5rem;
+  margin-left: 2rem;
 
   gap: 1rem;
 }
@@ -42,9 +52,48 @@
 .form-control input {
   font-size: 1.4rem;
   border: none;
-  box-shadow: 0 0 2px 1px rgba(9, 97, 121, 1);
+  box-shadow: 0 0 2px 1px #096179;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   outline: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.item button {
+  font-size: 1.2rem;
+  outline: none;
+  box-shadow: 0 0 2px 1px rgba(9, 97, 121, 1);
+  border: none;
+  border-radius: 15px;
+  padding: 0.5rem 1rem;
+
+  cursor: pointer;
+  color: #fff;
+  background-color: rgba(9, 97, 121, 1);
+  transition: all 0.2s;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+.item button:hover {
+  background-color: rgb(17, 137, 170);
+}
+
+.item label {
+  font-size: 1.2rem;
+  color: rgba(9, 97, 121, 1);
+  font-weight: 500;
+  text-align: center;
+}
+.item input {
+  align-self: center;
+  outline: none;
+  border: none;
+  font-size: 1.1rem;
+
+  cursor: pointer;
 }
 
 .actions {
@@ -52,7 +101,7 @@
   margin-top: 1.5rem;
 }
 .actions button {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   outline: none;
   box-shadow: 0 0 2px 1px rgba(9, 97, 121, 1);
   border: none;
@@ -62,8 +111,9 @@
   color: #fff;
   background-color: rgba(9, 97, 121, 1);
   transition: all 0.2s;
+  margin-bottom: 2rem;
 }
-.actions button:active,
+
 .actions button:hover {
   background-color: rgb(17, 137, 170);
 }
@@ -72,13 +122,25 @@
   color: rgba(141, 17, 17, 0.9);
 }
 
+.loading {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
 @media only screen and (max-width: 40em) {
   .container {
     flex-direction: column;
     align-items: center;
+    margin-left: 0;
   }
   .heading {
     align-self: center;
     text-align: center;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  .container {
+    margin-top: 20rem;
   }
 }

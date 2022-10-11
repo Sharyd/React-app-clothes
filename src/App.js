@@ -14,12 +14,12 @@ import AuthContext from "./store/auth-context";
 function App() {
   const [showCart, setShowCart] = useState(false);
   const dataCtx = useContext(DataContext);
-  const { cartData } = dataCtx;
+  const { items } = dataCtx;
   const authCtx = useContext(AuthContext);
-  console.log(cartData);
+
   const showCartHandler = () => {
     setShowCart(() => {
-      if (cartData.length >= 1) {
+      if (items.length >= 1) {
         return true;
       }
     });
@@ -35,28 +35,28 @@ function App() {
           <Route path="/" exact>
             <Redirect to="/all-clothes" />
           </Route>
-          <Route path="/all-clothes" exact>
+          <Route path="/all-clothes">
             <AllClothesPage />
           </Route>
+
           <Route path="/men">
             <MenPage />
           </Route>
           <Route path="/women">
             <WomenPage />
           </Route>
-          {!authCtx.isLoggedIn && (
+
+          {!authCtx.isLoggedIn ? (
             <Route path="/auth">
               <AuthFormPage />
             </Route>
-          )}
-          {authCtx.isLoggedIn ? (
+          ) : (
             <Route path="/profile">
               <ProfilePage />
             </Route>
-          ) : (
-            <Redirect to="/auth" />
           )}
-          <Route path="/:id">
+
+          <Route path="/:id" exact>
             <CartDetailPage />
           </Route>
         </Switch>
