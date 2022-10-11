@@ -9,8 +9,6 @@ const CartDetailList = (props) => {
 
   const forAuthenticatedPrice = price / 1.5;
 
-  const { id } = props;
-
   const dataHandler = () => {
     dataCtx.addItem({
       id: props.id,

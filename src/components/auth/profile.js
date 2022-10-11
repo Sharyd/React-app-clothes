@@ -1,5 +1,3 @@
-import { useHistory } from "react-router-dom";
-
 import { useState, useRef, useContext, useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import AuthContext from "../../store/auth-context";

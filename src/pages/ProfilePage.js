@@ -6,6 +6,7 @@ import { HiLogout } from "react-icons/hi";
 import classes from "./AllPages.module.css";
 import AuthContext from "../store/auth-context";
 import DataContext from "../store/data-context";
+
 const ProfilePage = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);

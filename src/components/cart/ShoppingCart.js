@@ -4,7 +4,7 @@ import Modal from "../ui/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
 
 import DataContext from "../../store/data-context";
-
+import toast from "react-hot-toast";
 import { Fragment, useContext, useState, useEffect } from "react";
 import FormCart from "./FormCart";
 
@@ -21,12 +21,18 @@ const ShoppingCart = (props) => {
   const dataCtx = useContext(DataContext);
   const { setDataToNull } = dataCtx;
   const { items, totalAmount } = dataCtx;
-  console.log(items);
+
   const hasItems = items.length >= 1;
   const { onClose } = props;
 
   const removeHandler = (id) => {
     dataCtx.removeItem(id);
+
+    const itemName = items.filter((item) => item.id === id);
+
+    toast.error(`${itemName[0].name} removed from cart`, {
+      position: "bottom-center",
+    });
     setIsForm(false);
   };
   const cartItemAddHandler = (item) => {

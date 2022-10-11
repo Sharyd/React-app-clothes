@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useReducer } from "react";
+import { useState, useMemo, useReducer } from "react";
 import uniqid from "uniqid";
 
 import DataContext from "./data-context";
@@ -72,7 +72,7 @@ const cartReducer = (state, action) => {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );
-    console.log(existingCartItemIndex);
+
     const existingCartItem = state.items[existingCartItemIndex];
 
     let updatedItems;
