@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useReducer } from "react";
+import { useState, useMemo, useReducer } from "react";
 import uniqid from "uniqid";
 
 import DataContext from "./data-context";
@@ -72,7 +72,7 @@ const cartReducer = (state, action) => {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
     );
-    console.log(existingCartItemIndex);
+
     const existingCartItem = state.items[existingCartItemIndex];
 
     let updatedItems;
@@ -156,71 +156,3 @@ const DataProvider = (props) => {
 };
 
 export default DataProvider;
-
-// const [data] = useState(DUMMY_CONTENT);
-// const [totalAmount, setTotalAmount] = useState(0);
-
-// const [addData, setData] = useState([]);
-
-// const addDataHandler = (clothes) => {
-//   console.log(clothes.id, addData);
-//   const existingItemIndex = addData.findIndex(
-//     (data) => data.id === clothes.id
-//   );
-//   const existingItem = addData[existingItemIndex];
-
-//   if (existingItem) {
-//     setData((prevData) => ({
-//       ...prevData,
-//       amount: existingItem.amount + clothes.amount,
-//     }));
-//   } else {
-//     setData((prevData) => [...prevData, clothes]);
-//   }
-
-//   // setData((prevData) => {
-
-//   //   return [...prevData, clothes];
-//   // });
-// };
-
-// const removeDataHandler = (id) => {
-//   const existingItemIndex = addData.findIndex((data) => data.id === id);
-//   const existingItem = addData[existingItemIndex];
-
-//   if (existingItemIndex >= 0) {
-//     setData((prev) => prev.splice(existingItemIndex, 1));
-//   }
-
-//   // setData((prevData) => {
-//   //   return prevData.filter((data) => data.id !== id);
-//   // });
-// };
-
-// // const setJustOneToCart = (id) => {
-// //   const existingItemIndex = addData.findIndex((data) => data.id === id);
-// //   const existingItem = addData[existingItemIndex];
-// //   if (existingItem) {
-// //     setData((prevData) => prevData.filter((data) => data !== existingItem));
-// //     setAmount((prevAmount) => prevAmount - 1);
-// //   }
-// // };
-
-// const getOneDetailItem = (id) => {
-//   return data.filter((data) => data.id === id);
-// };
-
-// const setDataToNull = () => {
-//   setData([]);
-// };
-
-// const context = {
-//   allClothes: useMemo(() => data, [data]),
-
-//   detailItem: getOneDetailItem,
-//   dataFunc: addDataHandler,
-//   removeDataHandler,
-//   // setJustOneToCart,
-//   setDataToNull,
-//   cartData: addData,
-// };

@@ -22,7 +22,6 @@ const MainNavigation = (props) => {
   };
 
   const numberOfCartItems = items.reduce((curNumber, item) => {
-    console.log(curNumber, item.amount);
     return curNumber + item.amount;
   }, 0);
   const handlerUserIconFeedback = () => {

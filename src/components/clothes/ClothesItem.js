@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./ClothesItem.module.css";
 import DataContext from "../../store/data-context";
 import AuthContext from "../../store/auth-context";
+import { toast } from "react-hot-toast";
 import { useContext } from "react";
 const ClothesItem = (props) => {
   const dataCtx = useContext(DataContext);
@@ -23,6 +24,9 @@ const ClothesItem = (props) => {
       price: authCtx.isLoggedIn ? forAuthenticatedPrice : props.price,
       image: props.image,
       amount: 1,
+    });
+    toast.success(`${props.title} added to basket`, {
+      position: "bottom-center",
     });
   };
 

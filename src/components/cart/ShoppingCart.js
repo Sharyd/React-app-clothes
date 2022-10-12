@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import classes from "./ShoppingCart.module.css";
 import Modal from "../ui/Modal";
 import ShoppingCartItem from "./ShoppingCartItem";
-
+import { toast } from "react-hot-toast";
 import DataContext from "../../store/data-context";
 
 import { Fragment, useContext, useState, useEffect } from "react";
@@ -21,14 +21,20 @@ const ShoppingCart = (props) => {
   const dataCtx = useContext(DataContext);
   const { setDataToNull } = dataCtx;
   const { items, totalAmount } = dataCtx;
-  console.log(items);
+
   const hasItems = items.length >= 1;
   const { onClose } = props;
 
   const removeHandler = (id) => {
     dataCtx.removeItem(id);
     setIsForm(false);
+
+    const itemName = items.filter((item) => item.id === id);
+    toast.error(`${itemName[0].name} removed from basket`, {
+      position: "bottom-center",
+    });
   };
+
   const cartItemAddHandler = (item) => {
     dataCtx.addItem({ ...item, amount: 1 });
   };
@@ -85,7 +91,7 @@ const ShoppingCart = (props) => {
     setError(false);
     setIsSubmitting(false);
   };
-  console.log(items);
+
   const cartItems1 = (
     <Fragment>
       <ul className={classes["cart-items"]}>
