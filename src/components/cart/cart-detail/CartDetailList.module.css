@@ -27,9 +27,11 @@
 
 .container h2 {
   width: 22rem;
-  font-size: 1.9rem;
+  font-size: 1.6rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .price {
@@ -54,15 +56,11 @@
 }
 
 .content {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   margin-top: 3rem;
 }
 
 .button {
-  /* display: block;
-  margin: 0 auto;
-  margin-right: 20rem;
-  margin-top: -5rem; */
   text-align: center;
 
   margin-top: 5rem;
@@ -73,7 +71,7 @@
   background-color: transparent;
   padding: 1rem 2rem;
   width: 10rem;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   border-radius: 4px;
 }
 
@@ -105,10 +103,10 @@
   .container h2 {
     text-align: center;
     margin: 0 auto;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   .content {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-top: 1rem;
   }
 }

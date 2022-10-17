@@ -18,8 +18,9 @@ const CartDetailList = (props) => {
       price: authCtx.isLoggedIn ? forAuthenticatedPrice : props.price,
       image: props.image,
     });
-    toast.success(`${props.name} added to basket`, {
+    toast.success(`${props.title} added to basket`, {
       position: "bottom-center",
+      duration: 1750,
     });
   };
 

@@ -27,6 +27,7 @@ const ClothesItem = (props) => {
     });
     toast.success(`${props.title} added to basket`, {
       position: "bottom-center",
+      duration: 1750,
     });
   };
 

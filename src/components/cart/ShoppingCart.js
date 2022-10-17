@@ -32,11 +32,17 @@ const ShoppingCart = (props) => {
     const itemName = items.filter((item) => item.id === id);
     toast.error(`${itemName[0].name} removed from basket`, {
       position: "bottom-center",
+      duration: 1750,
     });
   };
 
   const cartItemAddHandler = (item) => {
     dataCtx.addItem({ ...item, amount: 1 });
+
+    toast.success(`${item.name} added to basket`, {
+      position: "bottom-center",
+      duration: 1750,
+    });
   };
 
   const formHandler = () => {
