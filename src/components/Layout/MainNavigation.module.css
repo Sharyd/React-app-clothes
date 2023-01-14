@@ -189,6 +189,7 @@
 
   .header ul {
     margin: 1.4rem;
+    padding: 0;
     gap: 2rem;
   }
   .header li {
@@ -207,7 +208,7 @@
   }
 
   .header a {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .button {
     font-size: 1rem;
@@ -248,16 +249,17 @@
 
   .header ul {
     gap: 0.5rem;
+
   }
   .userIcon,
   .userIcon2 {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 
   .button svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.8rem;
+    height: 1.8rem;
   }
   .userFeedback {
     top: 3rem;

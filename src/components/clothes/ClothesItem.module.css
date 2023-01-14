@@ -42,7 +42,7 @@
   position: absolute;
 
   top: -35%;
-  right: 20%;
+  left: 60%;
 }
 
 .actions {
@@ -60,11 +60,13 @@
   margin-top: -1rem;
   font-size: 1.5rem;
   border-radius: 4px;
+  transition: all 0.2s;
 }
 
 .actions button:hover,
 .actions button:active {
-  background-color: #ffe2ed;
+  background-color: rgba(9, 97, 121, 1);
+  color: white;
 }
 
 @media only screen and (max-width: 34em) {
