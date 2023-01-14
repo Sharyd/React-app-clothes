@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AllClothesPage from "./pages/AllClothes";
 import MenPage from "./pages/Men";
 import WomenPage from "./pages/Women";
-import Layout from "./components/layout/Layout";
+import Layout from "./components/Layout/Layout";
 import ShoppingCart from "./components/cart/ShoppingCart";
 
 import DataContext from "./store/data-context";
