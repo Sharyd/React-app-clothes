@@ -2,7 +2,7 @@ import CartDetailList from "./CartDetailList";
 import classes from "./CartDetailItem.module.css";
 const CartDetailItem = (props) => {
   const { dataDetail } = props;
-  console.log(dataDetail);
+
   return (
     <ul className={classes.cartDetail}>
       {dataDetail.map((data) => (

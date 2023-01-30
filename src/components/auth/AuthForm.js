@@ -9,7 +9,7 @@ const passwordChars = (value) => {
   const regexChars = /[$&+,:;=?@#|'<>.^*()%!-]/;
   return value.match(regexChars) && value.length >= 7;
 };
-const includesFunction = (value) => {
+const isValidateFunc = (value) => {
   const regexDomains = /\.\b\w{2,5}\b/; // regex checking if they are last 2 or 3 char in domain
 
   return value.match(regexDomains);
@@ -36,7 +36,7 @@ const AuthForm = () => {
     reset: resetEmailInput,
   } = useInput(
     (value) =>
-      value.trim() !== "" && includesFunction(value) && value.includes("@")
+      value.trim() !== "" && isValidateFunc(value) && value.includes("@")
   );
 
   const {

@@ -11,7 +11,7 @@ const ShoppingCartItem = (props) => {
   const price = `${props.price.toFixed(0)}`;
   const [selectedSize, setSelectedSize] = useState(options[0].value);
 
-  props.updatedData({
+  props.setSize({
     size: selectedSize,
   });
 

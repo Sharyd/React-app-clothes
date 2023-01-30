@@ -13,9 +13,7 @@ const ClothesItem = (props) => {
   const { price } = props;
   const forAuthenticatedPrice = price / 1.5;
 
-  // const renderJustOneToCart = () => {
-  //   dataCtx.setJustOneToCart(id);
-  // };
+  
 
   const dataHandler = () => {
     dataCtx.addItem({
@@ -52,7 +50,7 @@ const ClothesItem = (props) => {
           <button
             onClick={() => {
               dataHandler();
-              // renderJustOneToCart();
+          
             }}
           >
             To Cart

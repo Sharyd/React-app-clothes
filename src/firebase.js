@@ -2,14 +2,16 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDiTdcWv-PzF8u_ILkBy4Re6RkMH5I11-A",
-  authDomain: "cloth-3a6df.firebaseapp.com",
-  databaseURL: "https://cloth-3a6df-default-rtdb.firebaseio.com",
-  projectId: "cloth-3a6df",
-  storageBucket: "cloth-3a6df.appspot.com",
-  messagingSenderId: "29445310981",
-  appId: "1:29445310981:web:241be70ce0fdc5994eea6c",
-  measurementId: "G-EWBEVEF3TP",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+   databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+
+  
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

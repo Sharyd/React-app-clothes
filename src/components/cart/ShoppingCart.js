@@ -112,7 +112,7 @@ const ShoppingCart = (props) => {
             onRemove={() => removeHandler(cloth.id)}
             onAdd={() => cartItemAddHandler(cloth)}
             onClose={props.onClose}
-            updatedData={userSizeHandler}
+            setSize={userSizeHandler}
           />
         ))}
       </ul>
